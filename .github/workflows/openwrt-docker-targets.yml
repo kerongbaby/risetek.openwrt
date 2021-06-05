@@ -4,7 +4,22 @@ on:
   workflow_dispatch:
 
 jobs:
- openwrt-build-targets:
+  openwrt-builder:
+    runs-on: Ubuntu-20.04
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@master
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@master
+      - name: Pull OpenWRT Docker builder Image
+        run: |
+         docker pull kerongbaby/openwrt:latest
+         echo docker image pulled
+
+openwrt-build-targets:
+  needs: openwrt-builder
   runs-on: Ubuntu-20.04
   container: kerongbaby/openwrt:latest
 
