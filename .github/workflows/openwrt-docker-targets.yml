@@ -17,6 +17,7 @@ jobs:
      run:  docker pull kerongbaby/openwrt:latest
 
  target-build:
+  needs: openwrt-builder
   runs-on: Ubuntu-20.04
 
   steps:
