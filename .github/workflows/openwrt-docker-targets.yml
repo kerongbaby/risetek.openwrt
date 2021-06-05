@@ -15,8 +15,3 @@ jobs:
       uses: docker/setup-qemu-action@master
     - name: Pull OpenWRT Docker builder Image
       run:  docker pull kerongbaby/openwrt:latest
-
- target-build:
-  needs: openwrt-builder
-  runs-on: Ubuntu-20.04
-  container: kerongbaby/openwrt:latest
