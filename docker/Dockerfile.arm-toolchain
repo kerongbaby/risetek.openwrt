@@ -1,0 +1,18 @@
+FROM kerongbaby/openwrt
+
+WORKDIR /home/openwrt
+
+RUN tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt \
+ && cd /home/openwrt/openwrt \
+ && cp /home/openwrt/devices/at91sama5d3_xplain/.config /home/openwrt/openwrt/
+
+WORKDIR /home/openwrt/openwrt
+RUN make toolchain/install
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+ENV PATH=/home/openwrt/openwrt/staging_dir/host/bin:$PATH
+
+VOLUME  /workspace
+WORKDIR /workspace
+CMD ["/bin/bash"]
