@@ -4,13 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  openwrt-build-targets:
-    runs-on: Ubuntu-20.04
-    container: kerongbaby/openwrt:latest
+ openwrt-build-targets:
+  runs-on: Ubuntu-20.04
 
-    steps:
-      # Those steps are executed directly on the VM
-      # Github workflows set container HOME as '/github/home', so use absolute path
-        run: |
-          set -ex
-          tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt
+  steps:
+   echo hello
