@@ -20,10 +20,8 @@ ADD --chown=openwrt:openwrt build-*.sh /home/openwrt/
 RUN chmod +x /home/openwrt/build-*.sh && chmod +x /entrypoint.sh
 
 USER openwrt
-COPY src/at91_config /home/openwrt/targets/
-COPY src/userlinux_config /home/openwrt/targets/
-COPY src/x86_config /home/openwrt/targets/
-COPY src/config-at91-a5d3 /home/openwrt/targets/
+COPY src/ /home/openwrt/targets/
+COPY devices/ /home/openwrt/devices/
 
 ## Clone openwrt, Update and install feeds, and packet it to openwrt home.
 ## All jobs done at directory /tmp, so clean it when finished.
