@@ -1,0 +1,30 @@
+name: OpenWRT Docker Image for Builder
+
+on:
+ workflow_dispatch:
+
+jobs:
+ build-openwrt:
+  runs-on: Ubuntu-20.04
+
+  steps:
+   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+   - uses: actions/checkout@v2
+
+   - name: Set up QEMU
+     uses: docker/setup-qemu-action@v1
+   - name: Set up Docker Buildx
+     uses: docker/setup-buildx-action@v1
+   - name: Login to DockerHub
+     uses: docker/login-action@v1 
+     with:
+      username: ${{ secrets.DOCKER_ACCOUNT }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
+   - name: Build and Push OpenWRT tools Docker
+     id: openwrt-docker-build
+     uses: docker/build-push-action@v2
+     with:
+      push: true
+      context: open-wrt/docker/
+      file: open-wrt/docker/Dockerfile
+      tags: kerongbaby/openwrt:latest

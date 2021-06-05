@@ -14,14 +14,13 @@ RUN useradd -m openwrt && echo 'openwrt ALL=NOPASSWD: ALL' > /etc/sudoers.d/open
     && git config --global user.name "wangyc@risetek.com" && git config --global user.email "wangyc@risetek.com" \
     && echo export LS_COLORS='$LS_COLORS':\''di=01;35':\' >> /home/openwrt/.bashrc
 
-COPY docker-entrypoint.sh /entrypoint.sh
-ADD --chown=openwrt:openwrt build-*.sh /home/openwrt/
-
-RUN chmod +x /home/openwrt/build-*.sh && chmod +x /entrypoint.sh
-
 USER openwrt
-COPY src/ /home/openwrt/targets/
-COPY devices/ /home/openwrt/devices/
+
+ADD docker-entrypoint.sh /entrypoint.sh
+ADD --chown=openwrt:openwrt src/ /home/openwrt/targets/
+ADD --chown=openwrt:openwrt devices/ /home/openwrt/devices/
+ADD --chown=openwrt:openwrt manual/ /home/openwrt/
+RUN sudo chmod +x /home/openwrt/build-*.sh && sudo chmod +x /entrypoint.sh
 
 ## Clone openwrt, Update and install feeds, and packet it to openwrt home.
 ## All jobs done at directory /tmp, so clean it when finished.
