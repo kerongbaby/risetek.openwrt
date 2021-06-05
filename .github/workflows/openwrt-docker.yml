@@ -4,7 +4,7 @@ on:
  workflow_dispatch:
 
 jobs:
- build-openwrt:
+ build-openwrt-docker:
   runs-on: Ubuntu-20.04
 
   steps:
@@ -25,6 +25,6 @@ jobs:
      uses: docker/build-push-action@v2
      with:
       push: true
-      context: open-wrt/docker/
-      file: open-wrt/docker/Dockerfile
+      context: /docker/
+      file: /docker/Dockerfile
       tags: kerongbaby/openwrt:latest
