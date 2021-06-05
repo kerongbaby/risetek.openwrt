@@ -1,0 +1,30 @@
+name: OpenWRT Targets Builder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  openwrt-builder:
+    runs-on: Ubuntu-20.04
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@master
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@master
+      - name: Pull OpenWRT Docker builder Image
+        run: |
+         docker pull kerongbaby/openwrt:latest
+
+  openwrt-build-targets:
+    needs: openwrt-builder
+    runs-on: Ubuntu-20.04
+    container: kerongbaby/openwrt:latest
+
+    steps:
+      # Those steps are executed directly on the VM
+      # Github workflows set container HOME as '/github/home', so use absolute path
+        run: |
+          set -ex
+          tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt
