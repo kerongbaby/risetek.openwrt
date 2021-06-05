@@ -11,7 +11,10 @@ jobs:
   steps:
   # Those steps are executed directly on the VM
   # Github workflows set container HOME as '/github/home', so use absolute path
-   - name: untar
-     run: |
-      set -ex
-      tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt
+   run: |
+    set -ex
+    tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt
+    cd /home/openwrt/openwrt
+    cp /home/openwrt/devices/at91sama5d3_xplain/.config ./
+    make defconfig
+    make -j$(nproc) || make V=s
