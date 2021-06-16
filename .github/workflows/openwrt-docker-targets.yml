@@ -18,3 +18,18 @@ jobs:
       cp /home/openwrt/devices/at91sama5d3_xplain/.config ./
       make defconfig
       make -j$(nproc) || make V=s
+   
+   - name: Prepare artifact
+     run: find /home/openwrt/openwrt/bin/targets/ -type d -name "packages" | xargs rm -rf {}
+
+   - name: Upload firmware
+     uses: actions/upload-artifact@master
+     with:
+      name: OpenWrt AT91SAMA5D3 firmware
+      path: /home/openwrt/openwrt/bin/targets/
+          
+   - name: Upload IPK
+     uses: actions/upload-artifact@master
+     with:
+      name: OpenWrt AT91SAMA5D3 IPK
+      path: /home/openwrt/openwrt/bin/packages/
