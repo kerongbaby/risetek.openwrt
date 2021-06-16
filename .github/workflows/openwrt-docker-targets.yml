@@ -6,7 +6,7 @@ on:
 jobs:
  target-build:
   runs-on: Ubuntu-20.04
-  container: kerongbaby/openwrt:latest
+  container: kerongbaby/openwrt-toolchain:latest
 
   steps:
   # Those steps are executed directly on the VM
@@ -14,7 +14,6 @@ jobs:
    - name: building at91sama5d3 xplain
      run: |
       set -ex
-      tar -zxf /home/openwrt/openwrt.sources.tgz -C /home/openwrt
       cd /home/openwrt/openwrt
       cp /home/openwrt/devices/at91sama5d3_xplain/.config ./
       make defconfig
