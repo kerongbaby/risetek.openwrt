@@ -1,4 +1,4 @@
-name: Targets OpenWRT Builder
+name: AT91SAMA5D3 XPlain Targets OpenWRT Builder
 
 on:
  workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 jobs:
  target-build:
   runs-on: Ubuntu-20.04
-  container: kerongbaby/openwrt-toolchain:latest
+  container: kerongbaby/openwrt-arm32-toolchain:latest
 
   steps:
   # Those steps are executed directly on the VM

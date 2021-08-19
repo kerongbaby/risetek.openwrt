@@ -1,4 +1,4 @@
-name: OpenWRT Docker Image for Builder
+name: OpenWRT Sources Image for Docker Builder
 
 on:
  workflow_dispatch:

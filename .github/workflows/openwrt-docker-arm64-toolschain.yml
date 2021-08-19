@@ -1,4 +1,4 @@
-name: OpenWRT AArch32 toolchain Image for Docker Builder
+name: OpenWRT AArch64 toolchain Image for Docker Builder
 
 on:
  workflow_dispatch:
@@ -26,5 +26,5 @@ jobs:
      with:
       push: true
       context: docker/
-      file: docker/Dockerfile.arm-toolchain
-      tags: kerongbaby/openwrt-arm32-toolchain:latest
+      file: docker/Dockerfile.arm64-toolchain
+      tags: kerongbaby/openwrt-arm64-toolchain:latest

@@ -1,4 +1,4 @@
-name: Targets OpenWRT Builder
+name: BPI-R64 Targets OpenWRT Builder
 
 on:
  workflow_dispatch:
@@ -6,12 +6,12 @@ on:
 jobs:
  target-build:
   runs-on: Ubuntu-20.04
-  container: kerongbaby/openwrt-toolchain:latest
+  container: kerongbaby/openwrt-arm-64-toolchain:latest
 
   steps:
   # Those steps are executed directly on the VM
   # Github workflows set container HOME as '/github/home', so use absolute path
-   - name: building BPI-R64 xplain
+   - name: building MT7622 BPI-R64
      run: |
       set -ex
       cd /home/openwrt/openwrt
