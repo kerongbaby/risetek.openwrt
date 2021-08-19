@@ -6,7 +6,7 @@ on:
 jobs:
  target-build:
   runs-on: Ubuntu-20.04
-  container: kerongbaby/openwrt-arm-64-toolchain:latest
+  container: kerongbaby/openwrt-arm64-toolchain:latest
 
   steps:
   # Those steps are executed directly on the VM
